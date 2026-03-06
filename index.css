@@ -1,0 +1,129 @@
+body {
+    margin: 0;
+    background-color: rgb(195, 167, 102);
+   font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between; /* Pushes logo to the left, links to the right */
+    align-items: center;
+    background-color: #441919; /* Dark background color */
+    color: rgb(252, 238, 189);
+    padding: 10px 20px;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+   font-family: 'Varela Round', sans-serif;
+
+}
+
+.navbar ul {
+    list-style-type: none; /* Removes bullet points */
+    margin: 0;
+    padding: 0;
+    display: flex; /* Makes the list items horizontal */
+}
+
+.navbar ul li a {
+    color: rgb(255, 248, 210);
+    text-decoration: none; /* Removes underlines from links */
+    padding: 10px 15px;
+    display: block;
+}
+
+.navbar ul li a:hover {
+    background-color: #662e2e; /* Changes background on hover */
+}
+
+.content {
+    padding-top: 60px; /* Add padding to body to prevent content from hiding under fixed navbar (if fixed position is used) */
+}
+
+.article {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.article-grid {
+  display: grid;
+  /* This creates a responsive grid without media queries! */
+  grid-auto-flow: column;
+  grid-auto-columns: 300px;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  gap: 20px; /* Space between the articles */
+  padding: 20px;
+}
+
+.card {
+    
+    scroll-snap-align: start;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  padding: 15px;
+  background: #eaf0ff;
+  transition: transform 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-5px); /* Simple lift effect */
+  box-shadow: 0 10px 20px rgba(35, 30, 92, 0.1);
+  background-color: rgb(225, 225, 225);
+}
+
+.card img {
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+}
+
+#Title {
+    padding-left: 30px;
+    padding-top: 30px;
+    color: #441919;
+    font-display: bold;
+    display: block;
+    
+}
+
+a {
+   font-family: 'Varela Round', sans-serif;
+   font-weight: 600;
+   color: #441919;
+   text-decoration: none;
+   
+}
+
+h1 {
+    font-family: 'Varela Round', sans-serif;
+}
+
+h3 {
+   font-family: 'Varela Round', sans-serif;
+}
+
+p {
+    font-family: 'Varela Round', sans-serif;
+}
+
+#article {
+    background-color: #fdf6e6;
+    font-family: 'Varela Round', sans-serif;
+    border-radius: 10px;
+     padding-left: 30px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    border: 1px solid #ddd;
+  border-radius: 8px;
+   box-shadow: 0 10px 20px rgba(35, 30, 92, 0.1);
+   display: inline-block;
+   width: 50%;
+   margin-left: 30px;
+   padding-right: 30px;
+  
+}

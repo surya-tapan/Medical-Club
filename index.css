@@ -123,9 +123,10 @@ p {
   border-radius: 8px;
    box-shadow: 0 10px 20px rgba(35, 30, 92, 0.1);
    display: inline-block;
-   width: 50%;
+   width: 1000px;
    margin-left: 30px;
    padding-right: 30px;
+
   
 }
 
@@ -183,4 +184,22 @@ p {
   font-size: 1rem;     
   font-weight: normal;
   opacity: 0.9;       
+}
+
+#contacts {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  padding: 15px;
+  background: #eaf0ff;
+  transition: transform 0.2s;
+  width: 70%;
+  margin-left: 30px;
+  margin-top: 15px;
+}
+
+#contacts:hover {
+  transform: translateY(-5px); /* Simple lift effect */
+  box-shadow: 0 10px 20px rgba(35, 30, 92, 0.1);
+  background-color: rgb(225, 225, 225);
 }

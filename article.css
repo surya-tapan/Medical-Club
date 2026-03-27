@@ -1,39 +1,6 @@
-.article {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-}
-
-.article-grid {
-  display: grid;
-  /* This creates a responsive grid without media queries! */
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 20px; /* Space between the articles */
-  padding: 20px;
-}
-
-.card {
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  overflow: hidden;
-  padding: 15px;
-  background: #eaf0ff;
-  transition: transform 0.2s;
-}
-
-.card:hover {
-  transform: translateY(-5px); /* Simple lift effect */
-  box-shadow: 0 10px 20px rgba(35, 30, 92, 0.1);
-  background-color: rgb(225, 225, 225);
-}
-
-.card img {
-  width: 100%;
-  height: auto;
-  border-radius: 4px;
-}
-
 body {
     margin: 0;
+    padding: 0;
     background-color: rgb(195, 167, 102);
    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
@@ -76,12 +43,56 @@ body {
     padding-top: 60px; /* Add padding to body to prevent content from hiding under fixed navbar (if fixed position is used) */
 }
 
+.article {
+    display: flex;
+    flex-direction: column;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.article-grid {
+  display: flex;
+  /* This creates a responsive grid without media queries! */
+  flex-direction: column;
+  
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  gap: 20px; /* Space between the articles */
+  padding: 20px;
+
+}
+
+.card {
+    width: 100%;
+    box-sizing: border-box;
+    scroll-snap-align: start;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  padding: 15px;
+  background: #eaf0ff;
+  transition: transform 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-5px); /* Simple lift effect */
+  box-shadow: 0 10px 20px rgba(35, 30, 92, 0.1);
+  background-color: rgb(225, 225, 225);
+}
+
+.card img {
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+}
+
 #Title {
     padding-left: 30px;
     padding-top: 30px;
     color: #441919;
     font-display: bold;
     display: block;
+    
     
 }
 
@@ -115,12 +126,17 @@ p {
     border: 1px solid #ddd;
   border-radius: 8px;
    box-shadow: 0 10px 20px rgba(35, 30, 92, 0.1);
-   display: block;
-   width: 70%;
+   display: inline-block;
    margin-left: 30px;
    padding-right: 30px;
+   flex: 0 0 60%;
+
   
 }
 
-
-    
+.containerart {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px; 
+            
+}

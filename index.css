@@ -22,10 +22,12 @@ body {
 }
 
 .navbar ul {
-    list-style-type: none; /* Removes bullet points */
+    list-style-type: none; 
     margin: 0;
     padding: 0;
-    display: flex; /* Makes the list items horizontal */
+    display: flex; 
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .navbar ul li a {
@@ -123,9 +125,11 @@ p {
   border-radius: 8px;
    box-shadow: 0 10px 20px rgba(35, 30, 92, 0.1);
    display: inline-block;
-   width: 1000px;
+   width: 90%;
+   max-width: 1000px;
    margin-left: 30px;
    padding-right: 30px;
+   box-sizing: border-box;
 
   
 }

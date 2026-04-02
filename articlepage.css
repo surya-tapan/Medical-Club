@@ -1,23 +1,23 @@
 .article {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr));
 }
 
 .article-grid {
   display: grid;
-  /* This creates a responsive grid without media queries! */
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr));
   gap: 20px; /* Space between the articles */
   padding: 20px;
 }
 
 .card {
-  border: 1px solid #ddd;
+ border: 1px solid #ddd;
   border-radius: 8px;
   overflow: hidden;
   padding: 15px;
   background: #eaf0ff;
   transition: transform 0.2s;
+  box-sizing: border-box;
 }
 
 .card:hover {
@@ -58,7 +58,8 @@ body {
     list-style-type: none; /* Removes bullet points */
     margin: 0;
     padding: 0;
-    display: flex; /* Makes the list items horizontal */
+    display: flex; 
+    flex-wrap: wrap;/* Makes the list items horizontal */
 }
 
 .navbar ul li a {
@@ -112,13 +113,16 @@ p {
      padding-left: 30px;
     padding-top: 30px;
     padding-bottom: 30px;
-    border: 1px solid #ddd;
-  border-radius: 8px;
+    padding-right: 30px;
+
+   border: 1px solid #ddd;
+   border-radius: 8px;
    box-shadow: 0 10px 20px rgba(35, 30, 92, 0.1);
    display: block;
-   width: 70%;
+   width: 90%;
+   max-width: 800px;
    margin-left: 30px;
-   padding-right: 30px;
+   
   
 }
 

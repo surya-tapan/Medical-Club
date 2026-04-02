@@ -12,6 +12,7 @@ body {
     background-color: #441919; /* Dark background color */
     color: rgb(252, 238, 189);
     padding: 10px 20px;
+    flex-wrap: wrap;
 }
 
 .logo {
@@ -26,6 +27,7 @@ body {
     margin: 0;
     padding: 0;
     display: flex; /* Makes the list items horizontal */
+    flex-wrap: wrap;
 }
 
 .navbar ul li a {
@@ -59,6 +61,7 @@ body {
   scroll-snap-type: x mandatory;
   gap: 20px; /* Space between the articles */
   padding: 20px;
+   box-sizing: border-box;
 
 }
 
@@ -123,12 +126,17 @@ p {
      padding-left: 30px;
     padding-top: 30px;
     padding-bottom: 30px;
+    padding-right: 30px;
+
+    width: 95%;            /* Fill the screen width */
+    max-width: 800px;
+    box-sizing: border-box;
     border: 1px solid #ddd;
   border-radius: 8px;
    box-shadow: 0 10px 20px rgba(35, 30, 92, 0.1);
    display: inline-block;
    margin-left: 30px;
-   padding-right: 30px;
+   
    flex: 0 0 60%;
 
   
@@ -138,5 +146,4 @@ p {
   display: flex;
   align-items: flex-start;
   gap: 20px; 
-            
 }

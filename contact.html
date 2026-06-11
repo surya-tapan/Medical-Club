@@ -3,18 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="css/index.css">
     <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
-    <title>Medical Club</title>
+    <title>HHS Medical Club - Contact</title>
+    
+    <script src="js/index.js" defer></script>
 </head>
-<!------<h1>Medical Club</h1>---->
 
 <body>
-    <script src="/index.js"></script>
-<nav class="navbar">
+
+    <nav class="navbar">
         <div class="logo">HHS Medical Club</div>
         <ul>
-             <li><a href="index.html">Home</a></li>
+            <li><a href="index.html">Home</a></li>
             <li><a href="articlepage.html">Articles</a></li>
             <li><a href="resources.html">Resources</a></li>
             <li><a href="contact.html">Contact</a></li>
@@ -22,16 +23,68 @@
         </ul>
     </nav>
 
-    <h1 id="Title">Contacts</h1>
-<div id="contacts">
-<p>Club Advisor: Ashley Sucheski</p>
-      <p>   email: </p>
-</div>
-<div id="contacts">
-<p>Student Officer: Grishma Timsina</p>
-      <p>   email: grishmatimsina285@gmail.com </p>
-      <p>   phone number: 717-572-6141 </p>
-</div>
+    <h1 id="Title">Contact Us</h1>
+    <main class="content">
+        
+        
+        <div class="contact-container">
+            
+            <div class="contact-card">
+                <h3>Club Advisor: Ashley Sucheski</h3>
+                <p>Email: <a href="mailto:asucheski@example.com">asucheski@example.com</a></p>
+            </div>
+            
+            <div class="contact-card">
+                <h3>Student Officer: Grishma Timsina</h3>
+                <p>Email: <a href="mailto:grishmatimsina285@gmail.com">grishmatimsina285@gmail.com</a></p>
+                <p>Phone: <a href="tel:717-572-6141">717-572-6141</a></p>
+            </div>
 
-    </body>
+        </div>
+    </main>
+    <!-- ==========================================================================
+     GLOBAL FOOTER SECTION
+     ========================================================================== -->
+<footer class="site-footer">
+    <div class="footer-container">
+        
+        <!-- Column 1: Brand & Tagline -->
+        <div class="footer-column brand-info">
+            <div class="footer-logo">HHS Medical Club</div>
+            <p class="footer-tagline">Cultivating curiosity, collaboration, and foundational knowledge in clinical science for the next generation of healthcare leaders.</p>
+        </div>
+
+        <!-- Column 2: Quick Directory -->
+        <div class="footer-column">
+            <h4>Explore</h4>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="articlepage.html">Articles</a></li>
+                <li><a href="resources.html">Resources</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+
+        <!-- Column 3: Mini FAQ -->
+        <div class="footer-column footer-faq">
+            <h4>Quick FAQ</h4>
+            <div class="faq-item">
+                <h5>Who can join?</h5>
+                <p>Any HHS student interested in healthcare—no prior science experience required!</p>
+            </div>
+            <div class="faq-item">
+                <h5>How do I stay updated?</h5>
+                <p>Check our Articles page regularly for new student-written clinical reviews.</p>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Bottom Copyright Bar -->
+    <div class="footer-bottom">
+        <p>&copy; 2026 HHS Medical Club. Built with passion by the executive board.</p>
+    </div>
+</footer>
+</body>
 </html>

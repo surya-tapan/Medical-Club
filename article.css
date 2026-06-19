@@ -1,149 +1,419 @@
+/* ==========================================================================
+   1. GLOBAL STYLES & TYPOGRAPHY
+   ========================================================================== */
 body {
     margin: 0;
     padding: 0;
     background-color: rgb(195, 167, 102);
-   font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-family: 'Varela Round', Verdana, Geneva, Tahoma, sans-serif;
+    color: #333333;
+    line-height: 1.7; /* Extra breathing room for reading */
 }
 
+h1, h2, h3, p, a {
+    font-family: 'Varela Round', sans-serif;
+}
+
+a {
+    font-weight: 600;
+    color: #441919;
+    text-decoration: none;
+    transition: all 0.25s ease;
+}
+
+a:hover {
+    color: #662e2e;
+}
+
+/* SCROLL REVEAL ENGINE: Items glide up beautifully as you scroll to them */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ==========================================================================
+   2. NAVIGATION BAR
+   ========================================================================== */
 .navbar {
     display: flex;
-    justify-content: space-between; /* Pushes logo to the left, links to the right */
+    justify-content: space-between;
     align-items: center;
-    background-color: #441919; /* Dark background color */
+    background-color: #441919;
     color: rgb(252, 238, 189);
-    padding: 10px 20px;
+    padding: 15px 30px;
     flex-wrap: wrap;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
 }
 
 .logo {
     font-size: 1.5rem;
     font-weight: bold;
-   font-family: 'Varela Round', sans-serif;
-
+    letter-spacing: -0.01em;
 }
 
 .navbar ul {
-    list-style-type: none; /* Removes bullet points */
+    list-style-type: none;
     margin: 0;
     padding: 0;
-    display: flex; /* Makes the list items horizontal */
+    display: flex;
     flex-wrap: wrap;
+    gap: 10px;
 }
 
 .navbar ul li a {
     color: rgb(255, 248, 210);
-    text-decoration: none; /* Removes underlines from links */
-    padding: 10px 15px;
+    padding: 8px 16px;
     display: block;
+    position: relative;
 }
 
-.navbar ul li a:hover {
-    background-color: #662e2e; /* Changes background on hover */
+/* INTERACTIVE EFFECT: Elegant growing underline on menu hover */
+.navbar ul li a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 50%;
+    background-color: rgb(252, 238, 189);
+    transition: all 0.25s ease;
 }
 
-.content {
-    padding-top: 60px; /* Add padding to body to prevent content from hiding under fixed navbar (if fixed position is used) */
+.navbar ul li a:hover::after {
+    width: 80%;
+    left: 10%;
 }
 
-.article {
+/* ==========================================================================
+   3. MAIN LAYOUT CONTAINER
+   ========================================================================== */
+.containerart {
     display: flex;
-    flex-direction: column;
-    grid-template-columns: repeat(4, 1fr);
+    align-items: flex-start;
+    gap: 50px; /* Wider gap for a cleaner layout */
+    padding: 60px 30px;
+    box-sizing: border-box;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* ==========================================================================
+   4. MAIN ARTICLE STYLES
+   ========================================================================== */
+.main-article {
+    background-color: #ffffff; /* Crisp white canvas */
+    border-left: 4px solid #441919; /* Signature brand vertical accent line */
+    padding: 50px;
+    box-sizing: border-box;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.03); /* Soft, luxurious, barely-there shadow */
+    flex: 1; 
+    max-width: 800px;
+}
+
+.article-meta {
+    display: block;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #888888;
+    margin-bottom: 10px;
+}
+
+.article-title {
+    color: #441919;
+    margin-top: 0;
+    font-size: 2.5rem;
+    line-height: 1.25;
+    letter-spacing: -0.02em;
+    font-weight: 700;
+}
+
+.article-author {
+    font-size: 0.95rem;
+    color: #666;
+    border-bottom: 1px solid #f0eae1;
+    padding-bottom: 20px;
+    margin-bottom: 30px;
+}
+
+.article-body h3 {
+    color: #441919;
+    font-size: 1.4rem;
+    margin-top: 35px;
+    margin-bottom: 12px;
+}
+
+.article-body p {
+    color: #444444;
+    font-size: 1.05rem;
+    margin-bottom: 24px;
+}
+
+.lead-paragraph {
+    font-size: 1.2rem;
+    color: #222222;
+    font-weight: 500;
+    line-height: 1.6;
+    border-left: 3px solid rgba(68, 25, 25, 0.2);
+    padding-left: 20px;
+    margin-bottom: 35px;
+}
+
+/* ==========================================================================
+   5. SIDEBAR & SUGGESTED ARTICLES
+   ========================================================================== */
+.suggested-articles {
+    width: 320px; 
+    flex-shrink: 0; 
+    position: sticky; /* Sidebar beautifully stays on screen as you read */
+    top: 40px;
+}
+
+.suggested-articles .section-title {
+    color: #441919;
+    margin-top: 0;
+    margin-bottom: 25px;
+    font-size: 1.3rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-bottom: 2px solid #441919;
+    padding-bottom: 8px;
 }
 
 .article-grid {
-  display: flex;
-  /* This creates a responsive grid without media queries! */
-  flex-direction: column;
-  
-  overflow-x: auto;
-  overscroll-behavior-x: contain;
-  scroll-snap-type: x mandatory;
-  gap: 20px; /* Space between the articles */
-  padding: 20px;
-   box-sizing: border-box;
-
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
 }
 
 .card {
     width: 100%;
+    height: 100%; /* CRITICAL: Tells the card to fill the maximum container height */
     box-sizing: border-box;
-    scroll-snap-align: start;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  overflow: hidden;
-  padding: 15px;
-  background: #eaf0ff;
-  transition: transform 0.2s;
+    border: none;
+    border-radius: 0px; 
+    overflow: hidden;
+    background: #ffffff;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.02);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+
+    /* FLEXBOX ENGINE: Turns the card into a rigid vertical structure */
+    display: flex;
+    flex-direction: column;
+}
+
+.card-content {
+    padding: 20px;
+    border-top: 3px solid #f3ede2; 
+
+    /* THE MAGIC TRICK: Tells this box to expand and absorb all empty space */
+    flex-grow: 1; 
+    
+    /* Optional: Keeps button content pushed neatly down if buttons are inside */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; 
 }
 
 .card:hover {
-  transform: translateY(-5px); /* Simple lift effect */
-  box-shadow: 0 10px 20px rgba(35, 30, 92, 0.1);
-  background-color: rgb(225, 225, 225);
+    transform: translateY(-6px);
+    box-shadow: 0 15px 30px rgba(68, 25, 25, 0.08);
 }
 
 .card img {
-  width: 100%;
-  height: auto;
-  border-radius: 4px;
-}
-
-#Title {
-    padding-left: 30px;
-    padding-top: 30px;
-    color: #441919;
-    font-display: bold;
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
     display: block;
+    transition: transform 0.5s ease; /* Preps the image container for motion */
+}
+
+/* INTERACTIVE EFFECT: Image subtly zooms inside its frame on card hover */
+.card:hover img {
+    transform: scale(1.04);
+}
+
+
+.card-content h3 {
+    margin-top: 0;
+    margin-bottom: 8px;
+    color: #441919;
+    font-size: 1.15rem;
+}
+
+.card-content p {
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #777;
+}
+
+.read-more-btn {
+    display: inline-block;
+    padding: 7px 14px;
+    background-color: transparent;
+    color: #441919;
+    border: 1px solid #441919;
+    border-radius: 0px;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: bold;
+}
+
+/* INTERACTIVE EFFECT: Elegant color-fill animation on button hover */
+.read-more-btn:hover {
+    background-color: #441919;
+    color: #ffffff !important;
+}
+
+/* ==========================================================================
+   6. RESPONSIVE DESIGN (MOBILE ADAPTATION)
+   ========================================================================== */
+@media (max-width: 768px) {
+    .containerart {
+        flex-direction: column; 
+        padding: 30px 15px;
+        gap: 40px;
+    }
+
+    .suggested-articles {
+        width: 100%; 
+        position: static; /* Removes fixed sticky tracking on mobile */
+    }
+
+    .main-article {
+        padding: 30px 20px;
+        border-left: 3px solid #441919;
+    }
+
+    .article-title {
+        font-size: 2rem;
+    }
+}
+
+/* ==========================================================================
+   9. PREMIUM MULTI-COLUMN FOOTER SYSTEM
+   ========================================================================== */
+.site-footer {
+    background-color: #441919; /* Your elegant signature dark burgundy */
+    color: rgb(252, 238, 189); /* Warm cream text matching your navbar */
+    padding: 60px 30px 20px 30px;
+    margin-top: 80px; /* Pushes the footer away from your main content */
+    font-family: 'Varela Round', sans-serif;
+    border-top: 4px solid rgba(252, 238, 189, 0.2);
+}
+
+.footer-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.footer-column h4 {
+    color: rgb(255, 248, 210);
+    font-size: 1.15rem;
+    margin-top: 0;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-bottom: 1px solid rgba(252, 238, 189, 0.1);
+    padding-bottom: 8px;
+}
+
+/* Column 1 Specifics */
+.footer-column.brand-info .footer-logo {
+    font-size: 1.4rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: rgb(255, 248, 210);
+}
+
+.footer-column.brand-info .footer-tagline {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    opacity: 0.8;
+    max-width: 320px;
+}
+
+/* Column 2 Link Navigation */
+.footer-column ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-column ul li {
+    margin-bottom: 12px;
+}
+
+.footer-column ul li a {
+    color: rgb(252, 238, 189);
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    opacity: 0.8;
+}
+
+.footer-column ul li a:hover {
+    opacity: 1;
+    color: rgb(255, 248, 210);
+    padding-left: 5px; /* Subtle fluid slide effect on hover */
+}
+
+/* Column 3 FAQ items */
+.footer-faq .faq-item {
+    margin-bottom: 15px;
+}
+
+.footer-faq h5 {
+    margin: 0 0 4px 0;
+    font-size: 0.95rem;
+    color: rgb(255, 248, 210);
+}
+
+.footer-faq p {
+    margin: 0;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    opacity: 0.75;
+}
+
+/* Bottom Strip */
+.footer-bottom {
+    max-width: 1100px;
+    margin: 40px auto 0 auto;
+    padding-top: 20px;
+    border-top: 1px solid rgba(252, 238, 189, 0.1);
+    text-align: center;
+    font-size: 0.8rem;
+    opacity: 0.6;
+}
+
+/* --- Responsive Desktop Alignment Layout --- */
+@media (min-width: 768px) {
+    .footer-container {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-start;
+    }
     
+    .footer-column {
+        flex: 1;
+    }
     
-}
-
-a {
-   font-family: 'Varela Round', sans-serif;
-   font-weight: 600;
-   color: #441919;
-   text-decoration: none;
-   
-}
-
-h1 {
-    font-family: 'Varela Round', sans-serif;
-}
-
-h3 {
-   font-family: 'Varela Round', sans-serif;
-}
-
-p {
-    font-family: 'Varela Round', sans-serif;
-}
-
-#article {
-    background-color: #fdf6e6;
-    font-family: 'Varela Round', sans-serif;
-    border-radius: 10px;
-     padding-left: 30px;
-    padding-top: 30px;
-    padding-bottom: 30px;
-    padding-right: 30px;
-
-    width: 95%;            /* Fill the screen width */
-    max-width: 800px;
-    box-sizing: border-box;
-    border: 1px solid #ddd;
-  border-radius: 8px;
-   box-shadow: 0 10px 20px rgba(35, 30, 92, 0.1);
-   display: inline-block;
-   margin-left: 30px;
-   
-   flex: 0 0 60%;
-
-  
-}
-
-.containerart {
-  display: flex;
-  align-items: flex-start;
-  gap: 20px; 
+    .footer-column.brand-info {
+        flex: 1.5; /* Gives the tagline column a little more breathing room */
+    }
 }

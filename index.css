@@ -1,24 +1,48 @@
+/* ==========================================================================
+   1. GLOBAL STYLES & TYPOGRAPHY
+   ========================================================================== */
 body {
     margin: 0;
     padding: 0;
     background-color: rgb(195, 167, 102);
-   font-family: Verdana, Geneva, Tahoma, sans-serif;
-}
-
-.navbar {
-    display: flex;
-    justify-content: space-between; /* Pushes logo to the left, links to the right */
-    align-items: center;
-    background-color: #441919; /* Dark background color */
-    color: rgb(252, 238, 189);
-    padding: 10px 20px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .logo {
     font-size: 1.5rem;
     font-weight: bold;
-   font-family: 'Varela Round', sans-serif;
+    font-family: 'Varela Round', sans-serif;
+}
 
+/* Reusable font declarations */
+h1, h3, p, a, .overlay-text {
+    font-family: 'Varela Round', sans-serif;
+}
+
+a {
+    font-weight: 600;
+    color: #441919;
+    text-decoration: none;
+}
+
+/* ==========================================================================
+   2. NAVIGATION BAR
+   ========================================================================== */
+.navbar {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+    background-color: #441919;
+    color: rgb(252, 238, 189);
+    padding: 15px 30px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    letter-spacing: -0.01em;
+    font-family: 'Varela Round', sans-serif;
 }
 
 .navbar ul {
@@ -27,183 +51,576 @@ body {
     padding: 0;
     display: flex; 
     flex-wrap: wrap;
-    justify-content: center;
+    gap: 10px;
 }
 
 .navbar ul li a {
     color: rgb(255, 248, 210);
-    text-decoration: none; /* Removes underlines from links */
-    padding: 10px 15px;
+    padding: 8px 16px;
     display: block;
-}
-
-.navbar ul li a:hover {
-    background-color: #662e2e; /* Changes background on hover */
-}
-
-.content {
-    padding-top: 60px; /* Add padding to body to prevent content from hiding under fixed navbar (if fixed position is used) */
-}
-
-.article {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-}
-
-.article-grid {
-  display: grid;
-  /* This creates a responsive grid without media queries! */
-  grid-auto-flow: column;
-  grid-auto-columns: 300px;
-  overflow-x: auto;
-  overscroll-behavior-x: contain;
-  scroll-snap-type: x mandatory;
-  gap: 20px; /* Space between the articles */
-  padding: 20px;
-}
-
-.card {
-    
-    scroll-snap-align: start;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  overflow: hidden;
-  padding: 15px;
-  background: #eaf0ff;
-  transition: transform 0.2s;
-}
-
-.card:hover {
-  transform: translateY(-5px); /* Simple lift effect */
-  box-shadow: 0 10px 20px rgba(35, 30, 92, 0.1);
-  background-color: rgb(225, 225, 225);
-}
-
-.card img {
-  width: 100%;
-  height: auto;
-  border-radius: 4px;
-}
-
-#Title {
-    padding-left: 30px;
-    padding-top: 30px;
-    color: #441919;
-    font-display: bold;
-    display: block;
-    
-}
-
-a {
-   font-family: 'Varela Round', sans-serif;
-   font-weight: 600;
-   color: #441919;
-   text-decoration: none;
-   
-}
-
-h1 {
     font-family: 'Varela Round', sans-serif;
+    font-weight: 600;
+    text-decoration: none;
+    position: relative;
+    transition: all 0.25s ease;
 }
 
-h3 {
-   font-family: 'Varela Round', sans-serif;
+/* CHIC INTERACTION: Growing line effect under the text when hovered */
+.navbar ul li a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 50%;
+    background-color: rgb(252, 238, 189);
+    transition: all 0.25s ease;
 }
 
-p {
-    font-family: 'Varela Round', sans-serif;
+.navbar ul li a:hover::after {
+    width: 80%;
+    left: 10%;
 }
 
-#article {
-    background-color: #fdf6e6;
-    font-family: 'Varela Round', sans-serif;
-    border-radius: 10px;
-     padding-left: 30px;
-    padding-top: 30px;
-    padding-bottom: 30px;
-    border: 1px solid #ddd;
-  border-radius: 8px;
-   box-shadow: 0 10px 20px rgba(35, 30, 92, 0.1);
-   display: inline-block;
-   width: 90%;
-   max-width: 1000px;
-   margin-left: 30px;
-   padding-right: 30px;
-   box-sizing: border-box;
+/* Mobile responsive menu shift */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+        padding: 20px;
+    }
+}
 
-  
+/* ==========================================================================
+   3. HERO BANNER
+   ========================================================================== */
+.image-container {
+    position: relative;
+    width: 100%;
 }
 
 #front {
     display: block;
     width: 100%;
     height: 600px;
-     -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%);
+    object-fit: cover; /* Keeps image from squishing when width shifts */
+    -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%);
     mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%);
 }
 
-.image-container {
-  position: relative;
-  width: 100%;
-  
-}
-
 .overlay-text {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  font-family: 'Varela Round', sans-serif;
-  
-  
-  display: flex;
-  justify-content: center; 
-  align-items: center;
-  text-align: center;
-
- 
-  color: white;
-  font-size: 2rem;
-  font-weight: bold;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); 
-  
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    text-align: center;
+    color: white;
+    font-size: 2rem;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); 
 }
 
 .text-group {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  color: white;
-  text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
 }
 
 .text-group h1 {
-  margin: 0;
-  font-size: clamp(2rem, 8vw, 5rem);
+    margin: 0;
+    font-size: clamp(2rem, 8vw, 5rem);
 }
 
 .footnote {
-  margin-top: 10px;   
-  font-size: 1rem;     
-  font-weight: normal;
-  opacity: 0.9;       
+    margin-top: 10px;   
+    font-size: 1rem;     
+    font-weight: normal;
+    opacity: 0.9;       
 }
 
+/* ==========================================================================
+   4. STRUCTURE & SECTION HEADINGS
+   ========================================================================== */
+.main-content {
+    padding-bottom: 40px;
+}
+
+.section-title {
+    padding-left: 30px;
+    padding-top: 30px;
+    color: #441919;
+    display: block;
+    margin: 0;
+    font-family: 'Varela Round', sans-serif;
+}
+
+/* CHIC UPDATE: Beautifully formatted introductory text container */
+#article {
+    background-color: #ffffff;    /* Crisp clean white background to pop off the gold/tan page */
+    border-left: 4px solid #441919; /* Matching brand vertical accent line */
+    padding: 30px;
+    margin-left: 30px;            /* Aligns perfectly under your main #Title */
+    margin-top: 20px;
+    max-width: 840px;             /* Keeps lines of text from stretching too wide and looking messy */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03); /* Soft luxury shadow */
+    box-sizing: border-box;
+}
+
+#article h3 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    color: #441919;
+    font-size: 1.5rem;
+    letter-spacing: -0.01em;
+}
+
+#article p {
+    color: #333333;               /* Dark charcoal editorial text */
+    font-size: 1.05rem;           /* Sized perfectly for comfortable reading */
+    line-height: 1.7;             /* Gives the text breathing room so it doesn't look squished */
+    margin: 0;
+}
+
+/* ==========================================================================
+   5. GRIDS & CARDS
+   ========================================================================== */
+.article-grid {
+    display: grid;
+    grid-auto-flow: column;
+    /* Changed from 300px to 260px to make the cards narrower */
+    grid-auto-columns: 260px; 
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    gap: 20px;
+    padding: 20px 30px;
+}
+/* 1. The Core Card Structure */
+.card-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+.card {
+    width: 100%;
+    height: 100%; /* CRITICAL: Tells the card to fill the maximum container height */
+    box-sizing: border-box;
+    border: none;
+    border-radius: 0px; 
+    overflow: hidden;
+    background: #ffffff;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.02);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+
+    /* FLEXBOX ENGINE: Turns the card into a rigid vertical structure */
+    display: flex;
+    flex-direction: column;
+}
+
+.card-content {
+    padding: 20px;
+    border-top: 3px solid #f3ede2; 
+
+    /* THE MAGIC TRICK: Tells this box to expand and absorb all empty space */
+    flex-grow: 1; 
+    
+    /* Optional: Keeps button content pushed neatly down if buttons are inside */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; 
+}
+
+/* The hover effects now trigger beautifully when the user hovers anywhere on the link container */
+.card-link:hover .card {
+    transform: translateY(-6px);
+    box-shadow: 0 15px 30px rgba(68, 25, 25, 0.08);
+}
+
+.card .img-wrapper {
+    width: 100%;
+    height: 170px;
+    overflow: hidden; 
+    position: relative;
+    display: block;
+}
+
+.card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease; 
+}
+
+/* Image zoom effect updates to track the main link hover state */
+.card-link:hover img {
+    transform: scale(1.04);
+}
+
+
+.card-content h3 {
+    margin-top: 0;
+    margin-bottom: 8px;
+    color: #441919;
+    font-size: 1.15rem;
+    line-height: 1.3;
+    transition: color 0.2s ease;
+}
+
+/* Subtle extra detail: The title changes color slightly when the card is hovered */
+.card-link:hover h3 {
+    color: #662e2e;
+}
+
+.card-content p {
+    margin: 0;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: #666666;
+}
+
+            /* ==========================================================================
+            VOLUNTEER & RESOURCE ACTION BUTTON CLASS
+            ========================================================================== */
+.read-more-btn {
+    display: inline-block;
+    padding: 8px 18px;
+    background-color: transparent;
+    color: #441919;
+    border: 1px solid #441919;
+    border-radius: 0px; /* Sharp, premium editorial look */
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: bold;
+    text-decoration: none;
+    transition: all 0.25s ease;
+}
+
+/* Elegant color-fill animation on hover */
+.read-more-btn:hover {
+    background-color: #441919;
+    color: #ffffff !important; /* Forces text to turn crisp white on fill */
+}
+
+/* ==========================================================================
+   6. CONTACTS & MISC
+   ========================================================================== */
 #contacts {
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  overflow: hidden;
-  padding: 15px;
-  background: #eaf0ff;
-  transition: transform 0.2s;
-  width: 70%;
-  margin-left: 30px;
-  margin-top: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    padding: 15px;
+    background: #eaf0ff;
+    transition: transform 0.2s;
+    width: 70%;
+    margin-left: 30px;
+    margin-top: 15px;
 }
 
 #contacts:hover {
-  transform: translateY(-5px); /* Simple lift effect */
-  box-shadow: 0 10px 20px rgba(35, 30, 92, 0.1);
-  background-color: rgb(225, 225, 225);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(35, 30, 92, 0.1);
+    background-color: rgb(225, 225, 225);
+}
+
+/* ==========================================================================
+   7. RESPONSIVE DESIGN (MOBILE ADAPTATION)
+   ========================================================================== */
+@media (max-width: 768px) {
+    /* 1. Stack the navigation items vertically if the screen gets too small */
+    .navbar {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+
+    /* 2. Scale down the large banner height so mobile users don't just see a massive picture */
+    #front {
+        height: 300px;
+    }
+
+    /* 3. Convert horizontal scroll slider into a natural vertical layout for phones */
+    .article-grid {
+        grid-auto-flow: row;
+        grid-template-columns: 100%;
+        overflow-x: visible;
+        scroll-snap-type: none;
+        padding: 15px;
+    }
+
+    /* 4. Ensure headers and contacts look aligned on small widths */
+    .section-title {
+        padding-left: 15px;
+        font-size: 1.5rem;
+    }
+
+    #contacts {
+        width: calc(100% - 30px);
+        margin-left: 15px;
+    }
+}
+
+/* ==========================================================================
+   8. CHIC & MODERN CONTACTS PAGE DESIGN
+   ========================================================================== */
+
+
+   #Title {
+    display: block;
+    font-weight: bold;
+    color: #441919;
+    padding-left: 30px;
+    padding-top: 30px;
+    
+} 
+
+/* Container layout with sophisticated whitespace */
+.contact-container {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding: 40px 30px;
+    max-width: 900px;
+}
+
+/* Elegant, minimalist card style */
+.contact-card {
+    background-color: #ffffff; /* Crisp white for a clean, editorial look */
+    border-left: 4px solid #441919; /* A subtle, high-end accent bar on the left */
+    border-top: none;
+    border-right: none;
+    border-bottom: none;
+    border-radius: 0px; /* Sharp corners look more professional and chic */
+    padding: 25px 30px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03); /* Soft, barely-there luxury shadow */
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); /* Ultra-smooth physics animation */
+}
+
+/* Sophisticated interactive states */
+.contact-card:hover {
+    transform: translateX(8px); /* Elegantly slides slightly right instead of lifting up */
+    box-shadow: 0 15px 35px rgba(68, 25, 25, 0.06); /* Adds a hint of your brand color to the shadow */
+    background-color: #fffcf7; /* Warm, premium ivory tint on hover */
+}
+
+/* Typography detailing */
+.contact-card h3 {
+    margin-top: 0;
+    margin-bottom: 12px;
+    color: #441919;
+    font-size: 1.35rem;
+    letter-spacing: -0.02em; /* Tighter letter-spacing creates an editorial feel */
+    font-weight: 700;
+}
+
+.contact-card p {
+    margin: 10px 0;
+    color: #555555; /* Soft charcoal text is easier on the eyes than harsh black */
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+/* Chic minimalist links */
+.contact-card a {
+    color: #441919;
+    text-decoration: none;
+    font-weight: 500;
+    border-bottom: 1px dashed rgba(68, 25, 25, 0.4); /* Elegant dashed underline instead of a solid block */
+    transition: all 0.2s ease;
+    padding-bottom: 2px;
+}
+
+.contact-card a:hover {
+    color: #662e2e;
+    border-bottom: 1px solid #662e2e; /* Solidifies on hover */
+}
+
+/* --- Responsive Clean Desktop Grid (600px and up) --- */
+@media (min-width: 600px) {
+    .contact-container {
+        flex-direction: row;
+        flex-wrap: wrap;
+        padding: 50px 30px;
+    }
+    
+    .contact-card {
+        flex: 1 1 calc(50% - 30px);
+        min-width: 320px;
+    }
+}
+
+/* ==========================================================================
+   HIGH-VISIBILITY VOLUNTEER CARD & TEXT STYLES
+   ========================================================================== */
+
+/* Keeps card layout stacks perfectly vertical */
+.flex-layout-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.structural-flex-content {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+/* Metadata checklist container styling */
+.specs-checklist-box {
+    background: #fbf9f4; 
+    padding: 12px 15px;
+    border-left: 2px solid rgba(68, 25, 25, 0.2);
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+/* Balanced styling for your base text labels */
+.specs-checklist-box .spec-line {
+    font-size: 0.85rem;
+    line-height: 1.4;
+    color: #555555;
+    font-weight: normal;
+}
+
+/* THE BOLD FIX: Forces the dynamic content text to look heavy and pop out */
+.specs-checklist-box .spec-line strong {
+    font-weight: 800 !important; /* Forces thickest modern font weight layout */
+    color: #111111 !important;   /* Shifts text value to a crisp dark gray */
+}
+
+/* Keeps card layout from underlines when using global link tags */
+.card-link {
+    text-decoration: none !important;
+    display: block;
+}
+
+
+/* ==========================================================================
+   9. PREMIUM MULTI-COLUMN FOOTER SYSTEM
+   ========================================================================== */
+.site-footer {
+    background-color: #441919; /* Your elegant signature dark burgundy */
+    color: rgb(252, 238, 189); /* Warm cream text matching your navbar */
+    padding: 60px 30px 20px 30px;
+    margin-top: 80px; /* Pushes the footer away from your main content */
+    font-family: 'Varela Round', sans-serif;
+    border-top: 4px solid rgba(252, 238, 189, 0.2);
+}
+
+.footer-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.footer-column h4 {
+    color: rgb(255, 248, 210);
+    font-size: 1.15rem;
+    margin-top: 0;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-bottom: 1px solid rgba(252, 238, 189, 0.1);
+    padding-bottom: 8px;
+}
+
+/* Column 1 Specifics */
+.footer-column.brand-info .footer-logo {
+    font-size: 1.4rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: rgb(255, 248, 210);
+}
+
+.footer-column.brand-info .footer-tagline {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    opacity: 0.8;
+    max-width: 320px;
+}
+
+/* Column 2 Link Navigation */
+.footer-column ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-column ul li {
+    margin-bottom: 12px;
+}
+
+.footer-column ul li a {
+    color: rgb(252, 238, 189);
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    opacity: 0.8;
+}
+
+.footer-column ul li a:hover {
+    opacity: 1;
+    color: rgb(255, 248, 210);
+    padding-left: 5px; /* Subtle fluid slide effect on hover */
+}
+
+/* Column 3 FAQ items */
+.footer-faq .faq-item {
+    margin-bottom: 15px;
+}
+
+.footer-faq h5 {
+    margin: 0 0 4px 0;
+    font-size: 0.95rem;
+    color: rgb(255, 248, 210);
+}
+
+.footer-faq p {
+    margin: 0;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    opacity: 0.75;
+}
+
+/* Bottom Strip */
+.footer-bottom {
+    max-width: 1100px;
+    margin: 40px auto 0 auto;
+    padding-top: 20px;
+    border-top: 1px solid rgba(252, 238, 189, 0.1);
+    text-align: center;
+    font-size: 0.8rem;
+    opacity: 0.6;
+}
+
+/* --- Responsive Desktop Alignment Layout --- */
+@media (min-width: 768px) {
+    .footer-container {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-start;
+    }
+    
+    .footer-column {
+        flex: 1;
+    }
+    
+    .footer-column.brand-info {
+        flex: 1.5; /* Gives the tagline column a little more breathing room */
+    }
 }

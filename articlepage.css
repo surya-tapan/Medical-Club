@@ -243,6 +243,71 @@ a {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr));
 }
+
+/* Section Header Layout for Buttons */
+.section-header-container {
+    display: flex;
+    justify-content: flex-start; /* Aligns content to the left side together */
+    align-items: center;        /* Centers them vertically perfectly */
+    gap: 15px;                  /* Creates a clean gap between the text and the button */
+    margin-bottom: 20px;
+}
+
+/* Fixes title spacing so it doesn't push the button away */
+.section-header-container .section-title {
+    margin: 0; 
+}
+
+/* ==========================================================================
+   8b. COMPONENT: SUBMIT ACTION ROW
+   ========================================================================== */
+.submit-action-row {
+    display: block;
+    margin-top: 8px;       
+    margin-bottom: 25px;    
+    padding: 0;             
+    text-align: left;       
+}
+
+/* Chic, Minimalist Rectangular Submission Button */
+.submit-btn {
+    display: inline-block;  
+    background-color: transparent;
+    color: #441919;
+    border: 1px solid #441919; /* Thin elegant frame */
+    padding: 6px 14px;
+    border-radius: 2px;        /* Very slight softening so it's not aggressively sharp */
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-family: 'Varela Round', sans-serif;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transition: all 0.2s ease;
+}
+
+.submit-btn:hover {
+    background-color: #441919; /* Fills in solidly only when hovered */
+    color: #ffffff;
+}
+
+.articles-header-inline {
+    display: flex;
+    align-items: baseline;  /* Aligns their text baselines instead of their bounding boxes */
+    gap: 20px;              
+    margin-bottom: 30px;      
+    padding-right: 30px;
+}
+
+.articles-header-inline .section-title {
+    margin: 0; 
+}
+
+/* Nudge the button down slightly if the padding makes it look too high */
+.articles-header-inline .submit-btn {
+    transform: translateY(2px); /* Increase this to 3px or 4px if you need it lower */
+}
+
     
 /* ==========================================================================
    5. PREMIUM MULTI-COLUMN FOOTER SYSTEM
@@ -360,4 +425,57 @@ a {
     .footer-column.brand-info {
         flex: 1.5; /* Gives the tagline column a little more breathing room */
     }
+}
+
+
+/* ==========================================================================
+   ARTICLE PAGE HEADER & BUTTON CLEANUP (CENTERED & MATCHED TO INDEX SCALE)
+   ========================================================================== */
+
+/* Main content wrapper canvas layout */
+.content {
+    max-width: 900px;     
+    margin: 40px auto;    
+    padding: 0 24px;
+    box-sizing: border-box;
+}
+
+/* Page Title - Targeted exactly via your ID selection styling */
+#Title {
+    font-family: 'Varela Round', sans-serif;
+    color: #441919;       
+    text-align: center;      /* Centers the text layout on the viewport */
+    font-size: 2.8rem;       /* Full primary index main title scale */
+    margin-top: 30px;        /* Keeping your specific 30px separation setting */
+    margin-bottom: 16px;     /* Space right before the centered button row */
+}
+
+/* Container block to cleanly stack and center the button beneath the header */
+.submit-action-row {
+    display: flex;
+    justify-content: center; /* Horizontally centers the button on the page */
+    margin-bottom: 45px;     /* Generous breathing room before your article grid begins */
+}
+
+/* Prominent, Clean, Rectangular Submission Button */
+.submit-action-row .submit-btn {
+    display: inline-block;  
+    background-color: #441919;
+    color: #ffffff;
+    border: 1px solid #441919;
+    padding: 10px 24px;        
+    border-radius: 0px;        /* Sharp, chic rectangular corners */
+    text-decoration: none;
+    font-size: 0.85rem;        
+    font-family: 'Varela Round', sans-serif;
+    font-weight: bold;
+    letter-spacing: 0.06em;    /* Elegantly tracked out letters */
+    text-transform: uppercase; /* Clean editorial style */
+    transition: all 0.25s ease;
+}
+
+/* Interactive inverted hover layout */
+.submit-action-row .submit-btn:hover {
+    background-color: transparent;
+    color: #441919;
 }

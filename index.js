@@ -43,7 +43,21 @@ const opportunities = [
         requirements: "Parental consent required; includes free tuberculosis (TB) screening and a routine flu vaccine.",
         image: "images/hospice-SoulMates.jpg", // Make sure this matches your physical image path!
         link: "opportunities/SoulMates.html"
-    }
+    },
+    {
+    id: "gigis-playhouse",
+    title: "GiGi’s Playhouse Volunteer Opportunities",
+    category: "Therapeutic & Educational Support",
+    ageLimit: "15+ years old",
+    location: "Lancaster", // Swap this out with your local branch city!
+    vibeCheck: "A high-energy, rewarding environment where you help run free educational and therapeutic programs—assisting with group fitness, peer mentoring during socials, or tutoring math and reading.",
+    commitment: "Varies by role; 1-on-1 tutoring requires 1 hour per week for a 10-week block.",
+    bestFor: "Students interested in pediatric medicine, physical or occupational therapy, special education, and speech-language pathology.",
+    requirements: "Parental waiver required for ages 15–17; includes a standard background check and attending a 1-hour orientation.",
+    image: "images/gigisplayhouse.jpg", // Make sure this matches your physical image path!
+    link: "opportunities/GiGisPlayhouse.html"
+}
+
 ];
 
 // ==========================================================================
@@ -184,14 +198,19 @@ function displayOpportunitySidebar() {
     const currentPageFile = window.location.pathname.split("/").pop();
     const isInSubfolder = window.location.pathname.includes("/opportunities/");
 
-    opportunities.forEach(opp => {
-        // 🛑 ANTI-DUPLICATE CHECK: Skip if this opportunity is already the open page
-        if (opp.link.toLowerCase().includes(currentPageFile.toLowerCase())) {
-            return; 
-        }
+    // 1. FILTER out the page the student is currently reading
+    const filteredOpportunities = opportunities.filter(opp => {
+        return !opp.link.toLowerCase().includes(currentPageFile.toLowerCase());
+    });
 
+    // 2. SLICE the remaining pool to capture a maximum of 3 items
+    const limitedOpportunities = filteredOpportunities.slice(0, 3);
+
+    // 3. LOOP over just those 3 items to render cards cleanly
+    limitedOpportunities.forEach(opp => {
         const correctedImage = getCorrectPath(opp.image, isInSubfolder);
-        // FIXED: Smart navigation routing for subfolders so paths don't stack up incorrectly
+        
+        // FIXED: Handles subfolder deep-links elegantly so paths never cross or chain break
         const correctedLink = currentPageFile === "" || !isInSubfolder ? opp.link : opp.link.split("/").pop();
 
         const cardHTML = `
@@ -210,6 +229,7 @@ function displayOpportunitySidebar() {
                 </article>
             </a>
         `;
+        
         sidebarGrid.innerHTML += cardHTML;
     });
 }

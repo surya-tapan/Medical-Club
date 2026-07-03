@@ -506,6 +506,55 @@ a {
     display: block;
 }
 
+/* ==========================================================================
+   8b. COMPONENT: SUBMIT ACTION ROW
+   ========================================================================== */
+.submit-action-row {
+    display: block;
+    margin-top: 8px;       
+    margin-bottom: 25px;    
+    padding: 0;             
+    text-align: left;       
+}
+
+/* Chic, Minimalist Rectangular Submission Button */
+.submit-btn {
+    display: inline-block;  
+    background-color: transparent;
+    color: #441919;
+    border: 1px solid #441919; /* Thin elegant frame */
+    padding: 6px 14px;
+    border-radius: 2px;        /* Very slight softening so it's not aggressively sharp */
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-family: 'Varela Round', sans-serif;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transition: all 0.2s ease;
+}
+
+.submit-btn:hover {
+    background-color: #441919; /* Fills in solidly only when hovered */
+    color: #ffffff;
+}
+
+.articles-header-inline {
+    display: flex;
+    align-items: baseline;  /* Aligns their text baselines instead of their bounding boxes */
+    gap: 20px;              
+    margin-bottom: 30px;      
+    padding-right: 30px;
+}
+
+.articles-header-inline .section-title {
+    margin: 0; 
+}
+
+/* Nudge the button down slightly if the padding makes it look too high */
+.articles-header-inline .submit-btn {
+    transform: translateY(2px); /* Increase this to 3px or 4px if you need it lower */
+}
 
 /* ==========================================================================
    9. PREMIUM MULTI-COLUMN FOOTER SYSTEM
@@ -622,5 +671,123 @@ a {
     
     .footer-column.brand-info {
         flex: 1.5; /* Gives the tagline column a little more breathing room */
+    }
+}
+
+/* ==========================================================================
+   ABOUT PAGE CONTENT & LAYOUT CLEANUP
+   ========================================================================== */
+
+/* Main canvas settings */
+.content {
+    max-width: 900px;     /* Locks layout from stretching too wide on desktop screens */
+    margin: 40px auto;    /* Centers the canvas with uniform padding */
+    padding: 0 24px;
+    box-sizing: border-box;
+}
+
+/* Headings typography adjustments */
+#Title {
+    font-family: 'Varela Round', sans-serif;
+    color: #441919;       /* Matches your primary deep branding color */
+    text-align: center;
+    font-size: 2.8rem;
+    margin-top: 50px;
+    margin-bottom: 10px;
+}
+
+.section-title {
+    font-family: 'Varela Round', sans-serif;
+    color: #441919;
+    font-size: 1.8rem;
+    margin-top: 60px;
+    margin-bottom: 25px;
+   
+    padding-bottom: 10px;
+}
+
+/* The primary text canvas elements */
+#article {
+    line-height: 1.75;
+    color: #3b3b3b;
+    font-size: 1.05rem;
+}
+
+#article p {
+    margin-bottom: 20px;
+}
+
+/* Three-Pillar Grid Container Setup */
+.contact-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 24px;            /* Uniform alignment spacing between cards */
+    margin-bottom: 60px;
+    margin-top: 20px;
+}
+
+/* Redesigned Minimalist Pillar Cards */
+.contact-card {
+    background: #ffffff;
+    border: 1px solid #eaddd7; /* Elegant minimal border frame */
+    border-radius: 4px;        /* Softened corners to match Varela Round */
+    padding: 24px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.contact-card:hover {
+    transform: translateY(-2px); /* Subtle premium interaction lift */
+    box-shadow: 0 6px 20px rgba(68, 25, 25, 0.05);
+}
+
+.contact-card h3 {
+    font-family: 'Varela Round', sans-serif;
+    color: #441919;
+    margin-top: 0;
+    margin-bottom: 12px;
+    font-size: 1.15rem;
+}
+
+.contact-card p {
+    color: #555555;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* The Core Principle Callout Panel */
+.principle-box {
+    background-color: #fcfaf6; /* Soft, warm neutral backdrop */
+    border-left: 4px solid #441919; /* Strong accent anchor element */
+    padding: 30px;
+    border-radius: 0 4px 4px 0;
+    margin-top: 50px;
+    margin-bottom: 40px;
+}
+
+.principle-box h3 {
+    font-family: 'Varela Round', sans-serif;
+    color: #441919;
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 1.3rem;
+}
+
+.principle-box p {
+    margin: 0;
+    font-style: italic;     /* Distinguishes the mission text from standard copy */
+    color: #441919;
+}
+
+/* Responsive adjustments for mobile viewports */
+@media (max-width: 600px) {
+    #Title {
+        font-size: 2.2rem;
+    }
+    .section-title {
+        font-size: 1.5rem;
+    }
+    .content {
+        margin: 20px auto;
     }
 }

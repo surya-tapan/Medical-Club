@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/index.css"> <!-- Added master index styles for uniform button alignment -->
     <link rel="stylesheet" href="css/articlepage.css">
     <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
     <title>HHS Medical Club - Articles</title>
@@ -10,6 +11,9 @@
 
 <body>
     
+    <!-- ==========================================================================
+         GLOBAL NAVIGATION BAR
+         ========================================================================== -->
     <nav class="navbar">
         <div class="logo">HHS Medical Club</div>
         <ul>
@@ -21,66 +25,68 @@
         </ul>
     </nav>
 
-    
-    
-  <main class="content">
-
-        <h1 id="Title" >Medical Club Articles</h1>
-<div class="submit-action-row">
-    <a href="https://docs.google.com/forms/d/e/1FAIpQLScc5_Kq-w9TqjTJx5sdCECJiheGk9ehhCQvoj0M_F2fP6D9RA/viewform?usp=publish-editor" class="submit-btn" >
-         Submit an Article
-    </a>
-    </div>
-</main>
-
-    <script src="js/index.js" defer></script>
-    
-    <div class="article-grid" style="padding: 30px;"id="automated-articles-grid">
-        </div>
-        <!-- ==========================================================================
-     GLOBAL FOOTER SECTION
-     ========================================================================== -->
-<footer class="site-footer">
-    <div class="footer-container">
+    <!-- ==========================================================================
+         MAIN CONTENT AREA
+         ========================================================================== -->
+    <main class="content">
+        <h1 id="Title">Medical Club Articles</h1>
         
-        <!-- Column 1: Brand & Tagline -->
-        <div class="footer-column brand-info">
-            <div class="footer-logo">HHS Medical Club</div>
-            <p class="footer-tagline">Cultivating curiosity, collaboration, and foundational knowledge in clinical science for the next generation of healthcare leaders.</p>
+        <div class="submit-action-row">
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLScc5_Kq-w9TqjTJx5sdCECJiheGk9ehhCQvoj0M_F2fP6D9RA/viewform?usp=publish-editor" class="submit-btn">
+                 Submit an Article
+            </a>
         </div>
 
-        <!-- Column 2: Quick Directory -->
-        <div class="footer-column">
-            <h4>Explore</h4>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="articlepage.html">Articles</a></li>
-                <li><a href="resources.html">Resources</a></li>
-                <li><a href="about.html">About Us</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-        </div>
+        <!-- FIXED: Moved inside <main> so cards generate directly beneath the button, not below the footer -->
+        <div class="article-grid" style="padding: 30px;" id="automated-articles-grid"></div>
+    </main>
 
-        <!-- Column 3: Mini FAQ -->
-        <div class="footer-column footer-faq">
-            <h4>Quick FAQ</h4>
-            <div class="faq-item">
-                <h5>Who can join?</h5>
-                <p>Any HHS student interested in healthcare—no prior science experience required!</p>
+    <!-- ==========================================================================
+         GLOBAL FOOTER SECTION
+         ========================================================================== -->
+    <footer class="site-footer">
+        <div class="footer-container">
+            
+            <!-- Column 1: Brand & Tagline -->
+            <div class="footer-column brand-info">
+                <div class="footer-logo">HHS Medical Club</div>
+                <p class="footer-tagline">Cultivating curiosity, collaboration, and foundational knowledge in clinical science for the next generation of healthcare leaders.</p>
             </div>
-            <div class="faq-item">
-                <h5>How do I stay updated?</h5>
-                <p>Check our Articles page regularly for new student-written clinical reviews.</p>
+
+            <!-- Column 2: Quick Directory -->
+            <div class="footer-column">
+                <h4>Explore</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="articlepage.html">Articles</a></li>
+                    <li><a href="resources.html">Resources</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
             </div>
+
+            <!-- Column 3: Mini FAQ -->
+            <div class="footer-column footer-faq">
+                <h4>Quick FAQ</h4>
+                <div class="faq-item">
+                    <h5>Who can join?</h5>
+                    <p>Any HHS student interested in healthcare—no prior science experience required!</p>
+                </div>
+                <div class="faq-item">
+                    <h5>How do I stay updated?</h5>
+                    <p>Check our Articles page regularly for new student-written clinical reviews.</p>
+                </div>
+            </div>
+
         </div>
 
-    </div>
+        <!-- Bottom Copyright Bar -->
+        <div class="footer-bottom">
+            <p>&copy; 2026 HHS Medical Club. Built with passion by the executive board.</p>
+        </div>
+    </footer>
 
-    <!-- Bottom Copyright Bar -->
-    <div class="footer-bottom">
-        <p>&copy; 2026 HHS Medical Club. Built with passion by the executive board.</p>
-    </div>
-</footer>
-
+    <!-- FIXED: Placed at the very bottom of body to ensure grid exists before JS initializes -->
+    <script src="js/index.js"></script>
 </body>
 </html>

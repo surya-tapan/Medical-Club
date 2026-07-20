@@ -1,8 +1,6 @@
 // ==========================================================================
 // 1. THE MAIN ARTICLE DATABASE
 // ==========================================================================
-// Note: We use absolute-style paths (starting with "images/" or "articles/")
-// The functions below will automatically fix the paths if you are in a subfolder.
 const articles = [
     {
         title: "Why I Built This: Demystifying the Medical Path for Students",
@@ -27,8 +25,6 @@ const opportunities = [
         bestFor: "Freshmen, Sophomores, & Juniors seeking long-term exposure",
         requirements: "Parent permission (under 18), standard immunizations",
         image: "images/hospital-UPMC-lititz.webp",
-        
-        // FIXED: Capitalized to perfectly match your physical file name "UPMCLititz.html"
         link: "opportunities/UPMCLititz.html" 
     },
     {
@@ -41,38 +37,36 @@ const opportunities = [
         commitment: "Flexible hours with quarterly training sessions.",
         bestFor: "Students who are empathetic, great listeners, and interested in nursing, psychology, social work, or counseling.",
         requirements: "Parental consent required; includes free tuberculosis (TB) screening and a routine flu vaccine.",
-        image: "images/hospice-SoulMates.jpg", // Make sure this matches your physical image path!
+        image: "images/hospice-SoulMates.jpg", 
         link: "opportunities/SoulMates.html"
     },
     {
-    id: "gigis-playhouse",
-    title: "GiGi’s Playhouse Volunteer Opportunities",
-    category: "Therapeutic & Educational Support",
-    ageLimit: "15+ years old",
-    location: "Lancaster", // Swap this out with your local branch city!
-    vibeCheck: "A high-energy, rewarding environment where you help run free educational and therapeutic programs—assisting with group fitness, peer mentoring during socials, or tutoring math and reading.",
-    commitment: "Varies by role; 1-on-1 tutoring requires 1 hour per week for a 10-week block.",
-    bestFor: "Students interested in pediatric medicine, physical or occupational therapy, special education, and speech-language pathology.",
-    requirements: "Parental waiver required for ages 15–17; includes a standard background check and attending a 1-hour orientation.",
-    image: "images/gigisplayhouse.jpg", // Make sure this matches your physical image path!
-    link: "opportunities/GiGisPlayhouse.html"
-}
-
+        id: "gigis-playhouse",
+        title: "GiGi’s Playhouse Volunteer Opportunities",
+        category: "Therapeutic & Educational Support",
+        ageLimit: "15+ years old",
+        location: "Lancaster, PA", 
+        vibeCheck: "A high-energy, rewarding environment where you help run free educational and therapeutic programs—assisting with group fitness, peer mentoring during socials, or tutoring math and reading.",
+        commitment: "Varies by role; 1-on-1 tutoring requires 1 hour per week for a 10-week block.",
+        bestFor: "Students interested in pediatric medicine, physical or occupational therapy, special education, and speech-language pathology.",
+        requirements: "Parental waiver required for ages 15–17; includes a standard background check and attending a 1-hour orientation.",
+        image: "images/gigisplayhouse.jpg", 
+        link: "opportunities/GiGisPlayhouse.html"
+    }
 ];
 
 // ==========================================================================
-// 3. HELPER FUNCTION: Fix paths for subfolder pages (like articles/ or opportunities/)
+// 3. HELPER FUNCTION: Fix paths for subfolder pages
 // ==========================================================================
 function getCorrectPath(currentPath, isInSubfolder) {
     if (isInSubfolder) {
-        // If we are inside a subfolder directory, add '../' to step out to the root
         return "../" + currentPath;
     }
     return currentPath;
 }
 
 // ==========================================================================
-// 4. MAIN ARTICLES GRID GENERATOR (Runs on Homepage / Directory Page)
+// 4. MAIN ARTICLES GRID GENERATOR (Runs on Homepage / Articles Page)
 // ==========================================================================
 function displayArticles() {
     const grid = document.getElementById('automated-articles-grid');
@@ -99,7 +93,7 @@ function displayArticles() {
 }
 
 // ==========================================================================
-// 5. SIDEBAR ARTICLES GENERATOR (Runs on Article Pages - Prevents Duplicates)
+// 5. SIDEBAR ARTICLES GENERATOR (Runs on Article Pages)
 // ==========================================================================
 function displaySidebarSuggestions() {
     const sidebarGrid = document.getElementById('sidebar-suggestions-grid');
@@ -111,7 +105,7 @@ function displaySidebarSuggestions() {
     const isInSubfolder = window.location.pathname.includes("/articles/");
 
     articles.forEach(article => {
-        if (article.link.includes(currentPageFile)) {
+        if (currentPageFile && article.link.includes(currentPageFile)) {
             return; 
         }
 
@@ -131,13 +125,12 @@ function displaySidebarSuggestions() {
                 </article>
             </a>
         `;
-        
         sidebarGrid.innerHTML += cardHTML;
     });
 }
 
 // ==========================================================================
-// 6. VOLUNTEER DIRECTORY GENERATOR (STREAMLINED FOR CRISP GRID)
+// 6. VOLUNTEER DIRECTORY GENERATOR (Runs on Resources Page)
 // ==========================================================================
 function displayOpportunities() {
     const resourceGrid = document.getElementById('automated-resources-grid');
@@ -145,18 +138,17 @@ function displayOpportunities() {
 
     resourceGrid.innerHTML = ""; 
 
-    // Checks if the user is sitting inside the articles or opportunities subfolders
     const isInSubfolder = window.location.pathname.includes("/opportunities/") || window.location.pathname.includes("/articles/");
 
     opportunities.forEach(opp => {
-        // FIXED: Wrap link in the path corrector so it functions cleanly on the index home screen
         const correctedLink = getCorrectPath(opp.link, isInSubfolder);
+        const correctedImage = getCorrectPath(opp.image, isInSubfolder);
 
         const resourceHTML = `
             <a href="${correctedLink}" class="card-link">
                 <article class="card flex-layout-card">
                     <div class="img-wrapper">
-                        <img src="${opp.image}" alt="${opp.title}">
+                        <img src="${correctedImage}" alt="${opp.title}">
                     </div>
                     <div class="card-content structural-flex-content">
                         <div class="meta-tag-wrapper">
@@ -187,7 +179,7 @@ function displayOpportunities() {
 }
 
 // ==========================================================================
-// 6b. OPPORTUNITY SIDEBAR GENERATOR (Runs on Opportunity Subpages)
+// 6b. OPPORTUNITY SIDEBAR GENERATOR (Runs on Individual Opportunity Pages)
 // ==========================================================================
 function displayOpportunitySidebar() {
     const sidebarGrid = document.getElementById('opportunity-sidebar-grid');
@@ -198,19 +190,15 @@ function displayOpportunitySidebar() {
     const currentPageFile = window.location.pathname.split("/").pop();
     const isInSubfolder = window.location.pathname.includes("/opportunities/");
 
-    // 1. FILTER out the page the student is currently reading
     const filteredOpportunities = opportunities.filter(opp => {
+        if (!currentPageFile) return true;
         return !opp.link.toLowerCase().includes(currentPageFile.toLowerCase());
     });
 
-    // 2. SLICE the remaining pool to capture a maximum of 3 items
     const limitedOpportunities = filteredOpportunities.slice(0, 3);
 
-    // 3. LOOP over just those 3 items to render cards cleanly
     limitedOpportunities.forEach(opp => {
         const correctedImage = getCorrectPath(opp.image, isInSubfolder);
-        
-        // FIXED: Handles subfolder deep-links elegantly so paths never cross or chain break
         const correctedLink = currentPageFile === "" || !isInSubfolder ? opp.link : opp.link.split("/").pop();
 
         const cardHTML = `
@@ -229,17 +217,16 @@ function displayOpportunitySidebar() {
                 </article>
             </a>
         `;
-        
         sidebarGrid.innerHTML += cardHTML;
     });
 }
 
 // ==========================================================================
-// 7. THE MASTER COMMAND: RUN EVERYTHING WHEN PAGE LOADS
+// 7. THE MASTER COMMAND: RUN EVERYTHING SAFELY ON LOAD
 // ==========================================================================
 window.addEventListener('DOMContentLoaded', () => {
-    displayArticles();             // Dynamically loads home/directory page cards
-    displaySidebarSuggestions();   // Dynamically loads sidebar medical recommendations
-    displayOpportunities();        // Dynamically loads volunteer dashboard card links
-    displayOpportunitySidebar();   // Dynamically loads opportunity sidebar cards
+    displayArticles();           
+    displaySidebarSuggestions();   
+    displayOpportunities();        
+    displayOpportunitySidebar();   
 });
